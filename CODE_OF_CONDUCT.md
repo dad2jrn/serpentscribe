@@ -1,4 +1,4 @@
-# Code of Conduct for fast_logger
+# Code of Conduct for SerpentScribe
 
 ## Our Pledge
 

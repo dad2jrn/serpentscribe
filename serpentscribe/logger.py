@@ -4,7 +4,7 @@ import datetime
 
 class Logger:
     """
-    A simple logger class that logs function calls to a JSON file.
+    A simple logger class that logs function calls to console in JSON format.
 
     Attributes:
         log_file (str): The path to the log file where entries will be written.
@@ -38,10 +38,9 @@ class Logger:
             'arguments': {'args': args, 'kwargs': kwargs},
             'result': result
         }
-        with open(self.log_file, 'a') as file:
-            file.write(json.dumps(log_entry) + '\n')
+        print(json.dumps(log_entry))
 
-def log_output(func):
+def log_output(func=None):
     """
     A decorator that wraps a function and logs its calls to a file.
 
@@ -54,20 +53,22 @@ def log_output(func):
         callable: The wrapped function.
     """
 
-    @functools.wraps(func)
-    def wrapper(*args, **kwargs):
-        """
-        The wrapper function around the decorated function.
+    def decorator(func):
+        @functools.wraps(func)
+        def wrapper(*args, **kwargs):
+            """
+            The wrapper function around the decorated function.
 
-        Args:
-            *args: Variable length argument list for the decorated function.
-            **kwargs: Arbitrary keyword arguments for the decorated function.
+            Args:
+                *args: Variable length argument list for the decorated function.
+                **kwargs: Arbitrary keyword arguments for the decorated function.
 
-        Returns:
-            The result of the decorated function.
-        """
-        result = func(*args, **kwargs)
-        logger = Logger()
-        logger.log(func.__name__, args, kwargs, result)
-        return result
-    return wrapper
+            Returns:
+                The result of the decorated function.
+            """
+            result = func(*args, **kwargs)
+            logger = Logger()
+            logger.log(func.__name__, args, kwargs, result)
+            return result
+        return wrapper
+    return decorator

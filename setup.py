@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='fast_logger',
+    name='serpentscribe',
     version='0.1',
     packages=find_packages(),
     license='MIT',
@@ -10,7 +10,7 @@ setup(
     long_description_content_type='text/markdown',
     author='Ron Meck',
     author_email='ronmeck@gmail.com',
-    url='https://github.com/dad2jrn/fast_logger',
+    url='https://github.com/dad2jrn/serpentscribe',
     install_requires=[
         # Dependencies, if any
     ],

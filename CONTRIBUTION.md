@@ -1,6 +1,6 @@
-## HELLO WORLD# Contributing to fast_logger
+## Contributing to SerpentScribe
 
-First off, thank you for considering contributing to fast_logger! It's people like you that make the open source community such a great place to learn, inspire, and create. Here are some guidelines we'd like you to follow so we can keep the project as effective as possible.
+First off, thank you for considering contributing to serpentscribe! It's people like you that make the open source community such a great place to learn, inspire, and create. Here are some guidelines we'd like you to follow so we can keep the project as effective as possible.
 
 ## Getting Started
 
@@ -18,7 +18,7 @@ Here's a quick guide to contributing:
 5. Run the tests to ensure your changes don't break existing functionality.
 6. Commit your changes with a clear and detailed commit message.
 7. Push your changes to your fork.
-8. Submit a pull request to the `fast_logger` repository.
+8. Submit a pull request to the `serpentscribe` repository.
 
 ## Pull Request Guidelines
 
@@ -46,4 +46,4 @@ We expect all contributors to adhere to our [Code of Conduct](CODE_OF_CONDUCT.md
 
 If you have any questions, feel free to create an issue in the repository with your question.
 
-Thank you for contributing to `fast_logger`!
+Thank you for contributing to `SerpentScribe`!
