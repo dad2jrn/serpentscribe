@@ -1,26 +1,37 @@
 import functools
+import logging
 import json
 import datetime
+import sys
+
 
 class Logger:
-    """
-    A simple logger class that logs function calls to console in JSON format.
-
-    Attributes:
-        log_file (str): The path to the log file where entries will be written.
-
-    Methods:
-        log(func_name, args, kwargs, result): Logs the function call details.
-    """
-
-    def __init__(self, log_file='function_log.json'):
+    def __init__(self, level, log_file=None):
         """
-        Initializes the Logger instance with a specified log file.
+        Initializes the Logger instance with a specified log level and log file.
 
         Args:
-            log_file (str): The path to the log file. Defaults to 'function_log.json'.
+            level (str): The level of logging (ex. DEBUG, INFO, WARNING, ERROR, CRITICAL).
+            log_file (str): The path to the log file. Defaults to None which means logs will be written to stdout.
         """
-        self.log_file = log_file
+        self.level = level.upper()
+        if log_file is None:
+            self.handler = logging.StreamHandler(sys.stdout)
+        else:
+            self.handler = logging.FileHandler(log_file)
+        # self.logger = self.setup_logger()
+
+    @property
+    def logger(self):
+        logger = logging.getLogger(__name__)
+        logger.setLevel(self.level)
+        formatter = logging.Formatter(
+            "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+        )
+        self.handler.setFormatter(formatter)
+        logger.addHandler(self.handler)
+
+        return logger
 
     def log(self, func_name, args, kwargs, result):
         """
@@ -33,14 +44,18 @@ class Logger:
             result: The result returned by the function.
         """
         log_entry = {
-            'timestamp': datetime.datetime.now().isoformat(),
-            'function': func_name,
-            'arguments': {'args': args, 'kwargs': kwargs},
-            'result': result
+            "timestamp": datetime.datetime.now().isoformat(),
+            "function": func_name,
+            "arguments": {"args": args, "kwargs": kwargs},
+            "result": result,
         }
-        print(json.dumps(log_entry))
+        if self.level == "DEBUG":
+            self.logger.debug(json.dumps(log_entry))
+        elif self.level == "INFO":
+            self.logger.info(json.dumps(log_entry))
 
-def log_output(func=None):
+
+def log_output(level, output_file=None):
     """
     A decorator that wraps a function and logs its calls to a file.
 
@@ -52,6 +67,7 @@ def log_output(func=None):
     Returns:
         callable: The wrapped function.
     """
+    logging.basicConfig(level=logging.INFO)
 
     def decorator(func):
         @functools.wraps(func)
@@ -67,8 +83,10 @@ def log_output(func=None):
                 The result of the decorated function.
             """
             result = func(*args, **kwargs)
-            logger = Logger()
+            logger = Logger(level, output_file)
             logger.log(func.__name__, args, kwargs, result)
             return result
+
         return wrapper
+
     return decorator
