@@ -17,18 +17,35 @@ pip install serpentscribe
 ```
 ## Usage
 
-To use SerpentScribe, import the log_output decorator and apply it to any function:
+To use SerpentScribe, import the log_output decorator and apply it to any function.  All inputs and outputs are logged to stdout and if specified, to a JSON file:
 
 ```python
 from serpentscribe.logger import log_output
 
-@log_output
+# Specify logger level (required) and file path (optional)
+@log_output(logger_level="DEBUG", file_path="/path/to/log/file")
 def my_function(arg1, arg2):
     # Function logic here
     return "Result"
 ```
 
-By default, logs are written to function_log.json in the current directory. You can change the log file path by modifying the Logger class instantiation inside the decorator.
+## Logging Level
+
+A logging level is a required argument when setting the decorator. The following are supported:
+
+| LEVEL       | Description     |
+| :------------- | -----------: |
+| DEBUG   | Detailed information, typically only of interest to a developer trying to diagnose a problem. |
+| INFO   | Confirmation that things are working as expected. |
+| WARNING   | An indication that something unexpected happened, or that a problem might occur in the near future (e.g. ‘disk space low’). The software is still working as expected. |
+| ERROR   | Due to a more serious problem, the software has not been able to perform some function. |
+| CRITICAL   | A serious error, indicating that the program itself may be unable to continue running. |
+
+
+## Logging to a File
+
+SerpentScribe will always output to stdout.  If a file is specified, then logging will be sent to `stdout` as well as the specified file.
+The log file will have the logs written in JSON format, which is both human-readable and easy to process programmatically. If a path for the log file is not specified, the logs will instead be written to `stdout`.
 
 ## Running Tests
 
