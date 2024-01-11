@@ -25,6 +25,24 @@ Here's a quick guide to contributing:
 - **Title**: Use a descriptive title that indicates the purpose of your pull request.
 - **Description**: Provide a detailed description of your changes. Include any relevant issue numbers.
 - **Commits**: Each commit should add a clear change or fix. Large changes should be broken into smaller commits.
+
+Commit messages should be similar in description to the following:
+```text
+Enhance logging functionality and update package…
+
+DESCRIPTION
+
+This commit extends the functionality of the SerpentScribe decorator to include flexible configuration of log level, optional logging to a specified file path, and expanded documentation on usage. Detailed descriptions for each supported log level have been added to the README.
+
+This also modifies the project's version number in setup.py from '0.1' to '0.2' and refines the package's short description text.
+
+Notable changes:
+- The decorator now requires a log level ("DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL").
+- File logging can be optionally enabled by providing a file path.
+- Each function invocation will continue to output logs to stdout.
+- Readme has been enriched with explanatory information about features and usage.
+```
+
 - **Testing**: Add any new tests necessary to cover the changes made.
 
 ## Reporting Bugs

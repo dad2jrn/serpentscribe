@@ -1,20 +1,27 @@
 # SerpentScribe
 
-`serpentscribe` is a simple, yet powerful Python logging library designed to make function call logging effortless. It provides a decorator to automatically log the details of function calls, including arguments and return values, to a JSON file.
+`serpentscribe` is a simple, yet powerful Python logging library designed to make function call logging effortless. No longer do you have to instantiate logging multiple times within a function or class.  This module provides a simple decorator to automatically log the details of function calls, including arguments and return values to stdout and optionally to a JSON file specified.
 
 ## Features
 
 - Easy to use: Simply decorate your functions to start logging.
-- Logs function name, arguments, return values, and timestamp.
-- Customizable log file path.
+- Logs *function name*, *arguments* passed, return *values*, and *timestamp*.
+- Customizable log file path when exporting to a file.
 
 ## Installation
 
-Install `SerpentScribe` using pip:
+Install `SerpentScribe` using `pipenv`:
+
+```bash
+pipenv install serpentscribe
+```
+
+or if you haven't graduated to `PIPENV` yet, (you probably should) you can install using `PIP`:
 
 ```bash
 pip install serpentscribe
 ```
+
 ## Usage
 
 To use SerpentScribe, import the log_output decorator and apply it to any function.  All inputs and outputs are logged to stdout and if specified, to a JSON file:
@@ -54,7 +61,7 @@ To run tests, navigate to the root directory of the project and execute:
 ```bash
 python -m unittest discover -s tests
 ```
-Ensure you have a test suite available in the tests directory.
+
 
 ## Contribution
 
