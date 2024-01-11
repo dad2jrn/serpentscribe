@@ -9,7 +9,7 @@ setup(
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
     author='Ron Meck',
-    author_email='ronmeck@gmail.com',
+    author_email='dad2jrn@gmail.com',
     url='https://github.com/dad2jrn/serpentscribe',
     install_requires=[
         # Dependencies, if any
